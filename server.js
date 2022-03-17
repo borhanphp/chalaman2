@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const path = require("path");
 
 const cors = require('cors');
 const corsOptions ={
@@ -36,7 +37,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 //cors
-if(process.env.NODE_ENV === 'production'){
+if(process.env.NODE_ENV === 'development'){
     app.use(cors({origin: `${process.env.CLIENT_URL}`}));
 }
 app.use(cors(corsOptions));
@@ -48,6 +49,20 @@ app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', tagRoutes);
 app.use('/api', adsRoutes);
+
+
+__dirname = path.resolve();
+if (process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "frontend/next")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "pages", "index.js"))
+    })
+} else {
+    app.use("/", (req, res) => {
+        res.send("API is running...");
+    });
+}
 
 //port
 const port = process.env.PORT || 8000
