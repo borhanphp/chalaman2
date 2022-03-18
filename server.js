@@ -37,7 +37,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 //cors
-if(process.env.NODE_ENV === 'production'){
+if(process.env.NODE_ENV === 'development'){
     app.use(cors({origin: `${process.env.CLIENT_URL}`}));
 }
 app.use(cors(corsOptions));
@@ -51,6 +51,10 @@ app.use('/api', tagRoutes);
 app.use('/api', adsRoutes);
 
 
+
+if (process.env.NODE_ENV === "production"){
+    app.use(express.static("frontend/build"));
+}
 
 //port
 const port = process.env.PORT || 8000
