@@ -36,10 +36,10 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-//cors
-// if(process.env.NODE_ENV === 'development'){
-//     app.use(cors({origin: `${process.env.CLIENT_URL}`}));
-// }
+cors
+if(process.env.NODE_ENV === 'production'){
+    app.use(cors({origin: `${process.env.CLIENT_URL}`}));
+}
 app.use(cors(corsOptions));
 
 //routes middleware
@@ -52,9 +52,10 @@ app.use('/api', adsRoutes);
 
 
 
-if (process.env.NODE_ENV === "production"){
-    app.use(express.static("frontend/build"));
-}
+// if (process.env.NODE_ENV === "production"){
+//     app.use(express.static("frontend/build"));
+// }
+
 
 //port
 const port = process.env.PORT || 8000

@@ -1,0 +1,1 @@
+{"c":["webpack"],"r":["pages/categories/[slug]"],"m":["./actions/category.js","./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fcategories%2F%5Bslug%5D&absolutePagePath=D%3A%5Cchnews%5Capp%5Cfrontend%5Cpages%5Ccategories%5C%5Bslug%5D.js!","./pages/categories/[slug].js"]}
