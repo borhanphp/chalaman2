@@ -12,7 +12,7 @@ const { smartTrim } = require('../helpers/blog');
 
 
 
-
+// create blog
 exports.create = (req, res) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
